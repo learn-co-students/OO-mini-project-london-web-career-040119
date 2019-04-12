@@ -23,4 +23,11 @@ class User
     RecipeCard.new(recipe, self, date, rating)
   end
 
+  def top_three_recipes
+    recipe_cards.sort_by(&:rating).first(3).map(&:recipe)
+  end
+
+  def most_recent_recipe
+    recipes.last
+  end
 end
