@@ -36,11 +36,19 @@ class Recipe
   end
 
   def ingredients
-    recipe_ingredients.map(&:ingredient)
+    recipe_ingredients.map(&:ingredient).uniq
   end
 
   def add_ingredients(ingredients)
     ingredients.map { |i| RecipeIngredient.new(self, i) }
+  end
+
+#allergens should return all of the Ingredients in this
+# recipe that are allergens for Users in our system.
+
+  def allergens
+    allergens = users.map(&:allergens).flatten.uniq
+    allergens & ingredients
   end
 
 end

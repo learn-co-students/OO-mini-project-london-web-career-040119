@@ -24,10 +24,23 @@ class User
   end
 
   def top_three_recipes
-    recipe_cards.sort_by(&:rating).first(3).map(&:recipe)
+    recipe_cards.sort_by(&:rating).reverse.first(3).map(&:recipe)
   end
 
   def most_recent_recipe
     recipes.last
   end
+
+  def declare_allery(ingredient)
+    Allergy.new(self, ingredient)
+  end
+
+  def allergies
+    Allergy.all.select { |a| a.user == self }
+  end
+
+  def allergens
+    allergies.map(&:ingredient).uniq
+  end
+
 end
