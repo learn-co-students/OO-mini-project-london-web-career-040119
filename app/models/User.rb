@@ -42,5 +42,4 @@ class User
   def allergens
     allergies.map(&:ingredient).uniq
   end
-
 end

@@ -16,7 +16,7 @@ class Ingredient
   end
 
   def users
-    allergies.map { |al| al.user }.uniq
+    allergies.map(&:user).uniq
   end
 
   def user_count
@@ -24,9 +24,6 @@ class Ingredient
   end
 
   def self.most_common_allergen
-    self.all.max_by { |ing| ing.user_count }
+    all.max_by(&:user_count)
   end
-
-
-
 end

@@ -15,5 +15,4 @@ class Allergy
   def self.find(user, ingredient)
     all.select { |al| al.user == user && al.ingredient == ingredient }
   end
-
 end
